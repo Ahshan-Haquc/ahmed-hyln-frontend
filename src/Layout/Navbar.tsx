@@ -1,44 +1,15 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { logout, selectUser } from "@/store/features/auth/auth.slice";
-import { useAppDispatch, useAppSelector } from "@/store/hook";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import CommonWrapper from "@/common/CommonWrapper";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const user = useAppSelector(selectUser);
-  console.log("user", user);
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
-  const navLinks = [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/services", label: "Services" },
-    { to: "/contact", label: "Contact" },
-  ];
+  const navigate = useNavigate();
 
   return (
-    <nav className="bg-website-color-green shadow-lg sticky top-0">
-      <CommonWrapper>
-        <div className="mx-auto">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link to="/" className="text-white text-2xl font-bold">
-              MyApp
-            </Link>
+    <nav className="fixed top-0 left-0 w-full bg-black  shadow-md z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
 
             {/* Desktop Menu section */}
             <div className="hidden md:flex items-center space-x-4">
@@ -52,81 +23,21 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
 
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Avatar className="cursor-pointer">
-                    {user?.profilePhoto ? (
-                      <AvatarImage
-                        src={user.profilePhoto}
-                        alt={user.fullName}
-                      />
-                    ) : (
-                      <AvatarFallback>
-                        {user?.fullName?.[0] || "U"}
-                      </AvatarFallback>
-                    )}
-                  </Avatar>
-                </PopoverTrigger>
-                <PopoverContent className="mr-3 bg-website-color-darkGray border-none text-white">
-                  <div className="flex flex-col items-center gap-2 mb-3">
-                    <Avatar>
-                      {user?.profilePhoto ? (
-                        <AvatarImage
-                          src={user.profilePhoto}
-                          alt={user.fullName}
-                        />
-                      ) : (
-                        <AvatarFallback>
-                          {user?.fullName?.[0] || "U"}
-                        </AvatarFallback>
-                      )}
-                    </Avatar>
-                    <span className="font-semibold">{user?.fullName}</span>
-                    <span className="text-xs text-gray-300">{user?.email}</span>
-                  </div>
-                  <Button
-                    onClick={handleLogout}
-                    className="bg-website-color-lightGray text-black w-full"
-                  >
-                    Logout
-                  </Button>
-                </PopoverContent>
-              </Popover>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsOpen((prev) => !prev)}
-                type="button"
-                className="text-white hover:text-gray-300 focus:outline-none"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  {isOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16m-7 6h7"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-6 text-white">
+            <Link to="/contact">Contact Us</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/contact">
+               <Button variant="default" className="bg-white text-black">Book a Demo</Button>
+            </Link>
           </div>
-        </div>
+
+          {/* Mobile Button */}
+          <div className="md:hidden text-white">
+            <button onClick={() => setIsOpen(!isOpen)}>
+              ☰
+            </button>
+          </div>
 
         {/* Mobile Menu */}
         {isOpen && (
@@ -149,8 +60,8 @@ const Navbar: React.FC = () => {
               </Button>
             )}
           </div>
-        )}
-      </CommonWrapper>
+        </div>
+      )}
     </nav>
   );
 };
