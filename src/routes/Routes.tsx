@@ -8,6 +8,7 @@ import AdminRoute from "./AdminRoutes";
 import AdminDashboard from "@/pages/Admin/AdminDashboard";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
+import CreateAgent from "@/pages/CreateAgent";
 import Services from "@/pages/Services";
 
 const routes = createBrowserRouter([
@@ -32,14 +33,6 @@ const routes = createBrowserRouter([
         element: <Services />,
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
         path: "/admin",
         element: <AdminRoute />, // This will check if the user is an admin
         children: [
@@ -50,6 +43,18 @@ const routes = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/create-agent",
+    element: <CreateAgent />,
   },
   {
     path: "*",

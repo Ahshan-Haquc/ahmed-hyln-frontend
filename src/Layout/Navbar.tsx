@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-sm font-medium"
+                  className="text-white hover:bg-website-color-lightGray hover:text-black px-3 py-2 rounded-md text-[16px] font-geist font-normal leading-normal"
                 >
                   {link.label}
                 </Link>
@@ -135,7 +135,7 @@ const Navbar: React.FC = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-base font-medium"
+                className="text-white block hover:bg-purple-700 px-3 py-2 rounded-md text-[16px] font-geist font-normal leading-normal"
               >
                 {link.label}
               </Link>
