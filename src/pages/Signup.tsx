@@ -3,7 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Eye, EyeClosed } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FiUserPlus } from "react-icons/fi";
 import signupImg from "@/assets/auth/login.png";
@@ -35,21 +35,25 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex bg-white font-sans">
-      <div className="hidden lg:flex lg:w-1/2">
-        <div className="w-full">
-          <img
-            src={signupImg}
-            alt="AI Voice Assistant Illustration"
-            className="w-full h-full object-cover p-5"
-          />
-        </div>
+    <div className="flex bg-white font-sans w-full">
+      <div className="w-full md:w-1/2 hidden md:block">
+        <img
+          src={signupImg}
+          alt="AI Voice Assistant Illustration"
+          className="w-full object-cover p-5"
+        />
       </div>
 
       {/* Right Section - Signup Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
 
-        <div className="w-full md:w-[350px]">
+        {/* <img
+          src={authBottomImg}
+          className="absolute bottom-0 w-[400px] h-[200px]"
+          alt=""
+        /> */}
+
+        <div className="w-full md:w-87.5">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-[54px] font-bold text-[#5D5FEF] tracking-tight">SOW</h1>
           </div>
@@ -119,10 +123,10 @@ const Signup = () => {
                 />
                 <button
                   type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#5B63F1] hover:text-[#4A51D1] transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#5B63F1] hover:text-[#4A51D1] transition-colors cursor-pointer"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
+                  {showPassword ? <Eye size={22} /> : <EyeClosed size={22} />}
                 </button>
               </div>
               {errors.password && (
@@ -147,14 +151,14 @@ const Signup = () => {
 
             <button
               type="button"
-              className="w-full border border-gray-100 py-3.5 rounded-2xl text-gray-600 font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-3 shadow-sm"
+              className="w-full border border-gray-100 py-3.5 rounded-2xl text-gray-600 font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-3 shadow-sm cursor-pointer"
             >
               Continue with <FcGoogle size={20} />
             </button>
 
             <p className="text-center text-[13px] text-gray-400 font-medium pt-2">
               Already have an account ?{" "}
-              <Link to="/login" className="text-[#5B63F1] font-bold hover:underline transition-all">
+              <Link to="/login" className="text-[#5B63F1] font-bold hover:underline transition-all cursor-pointer">
                 Sign In
               </Link>
             </p>
