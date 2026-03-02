@@ -1,14 +1,12 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home";
 import AdminRoute from "./AdminRoutes";
-import AdminDashboard from "@/pages/Admin/AdminDashboard";
-import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import Services from "@/pages/Services";
+import { Home, NotFound, AdminDashboard, Login, Signup, CreateAgent } from "./lazyPages";
+
+const withSuspense = (el: React.ReactElement) => (
+  <Suspense fallback={<div>Loading...</div>}>{el}</Suspense>
+);
 
 const routes = createBrowserRouter([
   {
@@ -17,43 +15,35 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/services",
-        element: <Services />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
+        element: withSuspense(<Home />),
       },
       {
         path: "/admin",
-        element: <AdminRoute />, // This will check if the user is an admin
+        element: <AdminRoute />,
         children: [
           {
             path: "",
-            element: <AdminDashboard />
-          }, // Admin Dashboard
+            element: withSuspense(<AdminDashboard />)
+          },
         ],
       },
     ],
   },
   {
+    path: "/login",
+    element: withSuspense(<Login />),
+  },
+  {
+    path: "/signup",
+    element: withSuspense(<Signup />),
+  },
+  {
+    path: "/create-agent",
+    element: withSuspense(<CreateAgent />),
+  },
+  {
     path: "*",
-    element: <NotFound />,
+    element: withSuspense(<NotFound />),
   },
 ]);
 
