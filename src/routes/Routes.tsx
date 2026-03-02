@@ -1,12 +1,12 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home";
 import AdminRoute from "./AdminRoutes";
-import AdminDashboard from "@/pages/Admin/AdminDashboard";
-import Login from "@/pages/Login";
-import Signup from "@/pages/Signup";
-import CreateAgent from "@/pages/CreateAgent";
+import { Home, NotFound, AdminDashboard, Login, Signup, CreateAgent } from "./lazyPages";
+
+const withSuspense = (el: React.ReactElement) => (
+  <Suspense fallback={<div>Loading...</div>}>{el}</Suspense>
+);
 
 const routes = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: withSuspense(<Home />),
       },
       {
         path: "/admin",
@@ -23,7 +23,7 @@ const routes = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <AdminDashboard />
+            element: withSuspense(<AdminDashboard />)
           },
         ],
       },
@@ -31,19 +31,19 @@ const routes = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: withSuspense(<Login />),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: withSuspense(<Signup />),
   },
   {
     path: "/create-agent",
-    element: <CreateAgent />,
+    element: withSuspense(<CreateAgent />),
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: withSuspense(<NotFound />),
   },
 ]);
 
