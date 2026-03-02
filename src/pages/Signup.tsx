@@ -36,7 +36,6 @@ const Signup = () => {
 
   return (
     <div className="flex bg-white font-sans">
-      {/* Left Section - Illustration (Hidden on mobile) */}
       <div className="hidden lg:flex lg:w-1/2">
         <div className="w-full">
           <img
