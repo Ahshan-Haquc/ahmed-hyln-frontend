@@ -56,7 +56,6 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Email Field */}
             <div className="relative">
               <div className="absolute left-4 -top-2.5 px-1.5 bg-white z-10">
                 <label className="text-[14px] lg:text-xs font-normal text-pure-black leading-normal">
@@ -74,7 +73,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password Field */}
             <div className="relative pt-2">
               <div className="absolute left-4 top-0 px-1.5 bg-white z-10">
                 <label className="text-[14px] lg:text-xs font-normal text-pure-black leading-normal">
