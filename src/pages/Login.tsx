@@ -5,12 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/store/hook";
 import { setUser } from "@/store/features/auth/auth.slice";
 import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Eye, EyeClosed } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FiLogIn } from "react-icons/fi";
 import loginImg from "@/assets/auth/login.png";
-import logo from "@/assets/auth/ai-logo.png";
-import authBack from "@/assets/auth/ai-login-back.png";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email format"),
@@ -35,39 +33,27 @@ const Login = () => {
   const onSubmit = (data: LoginFormInputs) => {
     console.log("Login Data:", data);
     dispatch(setUser(data));
-    navigate("/");
+    navigate("/create-agent");
   };
 
   return (
-    <div className="fixed inset-0 flex bg-white overflow-hidden font-sans">
-
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-        </div>
-        <div className="relative w-full p-5">
-          <img
-            src={loginImg}
-            alt="AI Voice Assistant Illustration"
-            className="w-full"
-          />
-        </div>
+    <div className="flex bg-white font-sans w-full">
+      <div className="w-full md:w-1/2 hidden md:block">
+        <img
+          src={loginImg}
+          alt="AI Voice Assistant Illustration"
+          className="w-full object-cover p-5"
+        />
       </div>
 
       {/* Right Section - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
-        {/* Subtle background waves/elements */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 z-0 overflow-hidden">
-          <img src={authBack} alt="" className="w-full h-full object-cover" />
-        </div>
-
-        <div className="w-full max-w-[420px] relative z-10">
-          <div className="flex flex-col items-center mb-10">
-            <img src={logo} alt="SOW logo" className="h-14 w-auto mb-2" />
-            <h1 className="text-4xl font-bold text-[#5B63F1] tracking-tight">SOW</h1>
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-10 relative">
+        <div className="w-full md:w-[400px] relative z-10">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-[54px] font-bold text-[#5D5FEF] tracking-tight">SOW</h1>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Email Field */}
             <div className="relative">
               <div className="absolute left-4 -top-2.5 px-1.5 bg-white z-10">
                 <label className="text-[14px] lg:text-xs font-normal text-pure-black leading-normal">
@@ -85,7 +71,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Password Field */}
             <div className="relative pt-2">
               <div className="absolute left-4 top-0 px-1.5 bg-white z-10">
                 <label className="text-[14px] lg:text-xs font-normal text-pure-black leading-normal">
@@ -101,17 +86,17 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#5B63F1] hover:text-[#4A51D1] transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#5B63F1] hover:text-[#4A51D1] transition-colors cursor-pointer"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <AiOutlineEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
+                  {showPassword ? <Eye size={22} /> : <EyeClosed size={22} />}
                 </button>
               </div>
               {errors.password && (
                 <p className="text-red-500 text-[10px] mt-1 ml-4 absolute">{errors.password.message}</p>
               )}
               <div className="flex justify-end mt-2">
-                <Link to="#" className="text-[#ADC4FF] text-[11px] font-medium hover:text-[#5B63F1] transition-colors">
+                <Link to="#" className="text-[#ADC4FF] text-[11px] font-medium hover:text-[#5B63F1] transition-colors cursor-pointer">
                   Forgot password?
                 </Link>
               </div>
@@ -120,7 +105,7 @@ const Login = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-[#5B63F1] hover:bg-[#4A51D1] text-white p-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-3 shadow-lg shadow-blue-100 group"
+                className="w-full bg-[#5B63F1] hover:bg-[#4A51D1] text-white p-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-3 shadow-lg shadow-blue-100 group cursor-pointer"
               >
                 Sign In
                 <FiLogIn size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -134,14 +119,14 @@ const Login = () => {
 
             <button
               type="button"
-              className="w-full border border-gray-100 py-3.5 rounded-2xl text-gray-600 font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-3 shadow-sm"
+              className="w-full border border-gray-100 py-3.5 rounded-2xl text-gray-600 font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-3 shadow-sm cursor-pointer"
             >
               Continue with <FcGoogle size={20} />
             </button>
 
             <p className="text-center text-[13px] text-gray-400 font-medium pt-2">
               Don't have an account ?{" "}
-              <Link to="/signup" className="text-[#5B63F1] font-bold hover:underline transition-all">
+              <Link to="/signup" className="text-[#5B63F1] font-bold hover:underline transition-all cursor-pointer">
                 Sign Up
               </Link>
             </p>
