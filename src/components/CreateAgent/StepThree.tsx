@@ -8,7 +8,6 @@ interface StepThreeProps {
 const StepThree = ({ onNext }: StepThreeProps) => {
     return (
         <div className="w-full h-full text-center relative z-10 p-6 md:p-8 flex flex-col items-center justify-between transition-all duration-700 animate-in fade-in">
-            {/* Top Section: Title + Description */}
             <div className="pt-6 md:pt-12">
                 <h2
                     className="text-[28px] md:text-[34px] font-medium mb-3 font-geist"
@@ -23,13 +22,13 @@ const StepThree = ({ onNext }: StepThreeProps) => {
                 >
                     Tell me about your business
                 </h2>
-                <p className="text-[#0011ED] text-base md:text-[18px] font-normal font-geist leading-normal">
+                <p className="text-input-border text-base md:text-[18px] font-normal font-geist leading-normal">
                     Just speak naturally and I'll gather the information I need
                 </p>
             </div>
 
             {/* Center Section: AI Logo + Listening */}
-            <div className="flex-grow flex flex-col items-center justify-center relative">
+            <div className="grow flex flex-col items-center justify-center relative">
                 <div className="mb-4">
                     <img
                         src={aiLogo}

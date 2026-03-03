@@ -13,7 +13,7 @@ const ResumeOnboarding = ({ onContinue }: ResumeOnboardingProps) => {
                 <img
                     src={aiLogo}
                     alt="AI Logo"
-                    className="w-[180px] h-auto md:w-[248px] md:h-[229px] object-contain"
+                    className="w-45 h-auto md:w-62 md:h-57.25 object-contain"
                 />
             </div>
 
@@ -33,7 +33,7 @@ const ResumeOnboarding = ({ onContinue }: ResumeOnboardingProps) => {
             </h2>
 
             {/* Description */}
-            <p className="text-[#0011ED] text-base md:text-[18px] font-normal font-geist mb-8 max-w-md mx-auto leading-normal">
+            <p className="text-input-border text-base md:text-[18px] font-normal font-geist mb-8 max-w-md mx-auto leading-normal">
                 No worries! Let's pick up where we left off.
             </p>
 
