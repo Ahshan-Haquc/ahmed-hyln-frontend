@@ -45,15 +45,9 @@ const Signup = () => {
       </div>
 
       {/* Right Section - Signup Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-10 relative">
 
-        {/* <img
-          src={authBottomImg}
-          className="absolute bottom-0 w-[400px] h-[200px]"
-          alt=""
-        /> */}
-
-        <div className="w-full md:w-87.5">
+        <div className="w-full md:w-[400px]">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-[54px] font-bold text-[#5D5FEF] tracking-tight">SOW</h1>
           </div>

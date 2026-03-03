@@ -9,7 +9,6 @@ import { Eye, EyeClosed } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { FiLogIn } from "react-icons/fi";
 import loginImg from "@/assets/auth/login.png";
-import logo from "@/assets/auth/ai-logo.png";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email format"),
@@ -34,7 +33,7 @@ const Login = () => {
   const onSubmit = (data: LoginFormInputs) => {
     console.log("Login Data:", data);
     dispatch(setUser(data));
-    navigate("/");
+    navigate("/create-agent");
   };
 
   return (
@@ -48,11 +47,10 @@ const Login = () => {
       </div>
 
       {/* Right Section - Login Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-16 relative">
-        <div className="w-full max-w-105 relative z-10">
-          <div className="flex flex-col items-center mb-10">
-            <img src={logo} alt="SOW logo" className="h-14 w-auto mb-2" />
-            <h1 className="text-4xl font-bold text-[#5B63F1] tracking-tight">SOW</h1>
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 lg:p-10 relative">
+        <div className="w-full md:w-[400px] relative z-10">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-[54px] font-bold text-[#5D5FEF] tracking-tight">SOW</h1>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
