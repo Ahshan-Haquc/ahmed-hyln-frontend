@@ -1,14 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import About from "../pages/About";
-import Contact from "../pages/Contact";
-import NotFound from "../pages/NotFound";
-import Home from "../pages/Home";
-import AdminRoute from "./AdminRoutes";
-import AdminDashboard from "@/pages/Admin/AdminDashboard";
+import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
-import Services from "@/pages/Services";
+import CreateAgent from "@/pages/CreateAgent";
+import NotFound from "@/pages/NotFound";
+import DashboardHome from "@/pages/Dashboard/DashboardHome";
+import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "./DashboardLayout";
 
 const routes = createBrowserRouter([
   {
@@ -16,37 +15,54 @@ const routes = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/create-agent",
+    element: <CreateAgent />,
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
       {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/services",
-        element: <Services />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/admin",
-        element: <AdminRoute />, // This will check if the user is an admin
+        path: "/dashboard",
+        element: <DashboardLayout />,
         children: [
           {
-            path: "",
-            element: <AdminDashboard />
-          }, // Admin Dashboard
+            index: true,
+            element: <DashboardHome />,
+          },
+          {
+            path: "about",
+            element: <DashboardHome />,
+          },
+          {
+            path: "business",
+            element: <DashboardHome />,
+          },
+          {
+            path: "phone",
+            element: <DashboardHome />,
+          },
+          {
+            path: "integrations",
+            element: <DashboardHome />,
+          },
+          {
+            path: "settings",
+            element: <DashboardHome />,
+          },
         ],
       },
     ],
