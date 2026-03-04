@@ -1,12 +1,13 @@
-import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import AdminRoute from "./AdminRoutes";
-import { Home, NotFound, AdminDashboard, Login, Signup, CreateAgent } from "./lazyPages";
-
-const withSuspense = (el: React.ReactElement) => (
-  <Suspense fallback={<div>Loading...</div>}>{el}</Suspense>
-);
+import Home from "@/pages/Home";
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import CreateAgent from "@/pages/CreateAgent";
+import NotFound from "@/pages/NotFound";
+import DashboardHome from "@/pages/Dashboard/DashboardHome";
+import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "./DashboardLayout";
 
 const routes = createBrowserRouter([
   {
@@ -14,36 +15,61 @@ const routes = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
-        element: withSuspense(<Home />),
+        index: true,
+        element: <Home />,
       },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/create-agent",
+    element: <CreateAgent />,
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
       {
-        path: "/admin",
-        element: <AdminRoute />,
+        path: "/dashboard",
+        element: <DashboardLayout />,
         children: [
           {
-            path: "",
-            element: withSuspense(<AdminDashboard />)
+            index: true,
+            element: <DashboardHome />,
+          },
+          {
+            path: "about",
+            element: <DashboardHome />,
+          },
+          {
+            path: "business",
+            element: <DashboardHome />,
+          },
+          {
+            path: "phone",
+            element: <DashboardHome />,
+          },
+          {
+            path: "integrations",
+            element: <DashboardHome />,
+          },
+          {
+            path: "settings",
+            element: <DashboardHome />,
           },
         ],
       },
     ],
   },
   {
-    path: "/login",
-    element: withSuspense(<Login />),
-  },
-  {
-    path: "/signup",
-    element: withSuspense(<Signup />),
-  },
-  {
-    path: "/create-agent",
-    element: withSuspense(<CreateAgent />),
-  },
-  {
     path: "*",
-    element: withSuspense(<NotFound />),
+    element: <NotFound />,
   },
 ]);
 
